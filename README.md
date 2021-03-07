@@ -6,3 +6,7 @@
   * redis
   * spring-cloud
   * eureka
+  * zuul
+
+---
+备注:项目启动流程 vast-eureka => vast-gateway => vast-auth
