@@ -6,32 +6,87 @@
 
     <groupId>com.cvast</groupId>
     <artifactId>vast-cloud</artifactId>
-    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
-    <description>父工程项目依赖管理</description>
-
-    <modules>
-
-    </modules>
+    <packaging>pom</packaging>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.4.RELEASE</version>
+        <version>2.3.2.RELEASE</version>
     </parent>
 
+    <modules>
+        <module>vast-common</module>
+        <module>vast-model</module>
+        <module>vast-service</module>
+        <module>vast-dao</module>
+
+        <module>vast-eureka</module>
+        <module>vast-auth</module>
+        <module>vast-gateway</module>
+    </modules>
+
+
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <vast-cloud.version>1.0-SNAPSHOT</vast-cloud.version>
+
+        <spring-cloud.version>Hoxton.SR6</spring-cloud.version>
+        <spring.version>2.2.0.M4</spring.version>
+
+        <lombok.version>1.18.18</lombok.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
-
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <dependencies>
+        <!--        spring cloud依赖-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+        </dependency>
+        <!--        spring boot依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!--        项目依赖-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+    </dependencies>
 
     <build>
         <finalName>vast-cloud</finalName>
