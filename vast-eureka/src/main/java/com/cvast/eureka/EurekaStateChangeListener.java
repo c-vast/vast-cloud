@@ -7,13 +7,13 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 /**
- * Copyright (C), 2020-2021, c-vast工作室
+ * Copyright (C), 2020-2021, c-vast
  *
- * @FileName: EurekaStateChangeListener
- * @Author: hechenghao1998@foxmail.com
- * @Date: 2021/3/7 18:44
- * @Description: Eureka事件监听
- * @since 1.0.0
+ * @className: EurekaStateChangeListener
+ * @author: hechenghao1998@foxmail.com
+ * @date: 2021/3/7 18:44
+ * @description: Eureka事件监听
+ * @version 1.0.0
  */
 @Component
 @Slf4j

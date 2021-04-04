@@ -1,4 +1,4 @@
-package com.vast.auth;
+package com.vast.system;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,10 +8,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableEurekaClient
 @EnableFeignClients
 @SpringBootApplication
-public class VastAuthApplication {
+public class VastSystemApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(VastAuthApplication.class, args);
+        SpringApplication.run(VastSystemApplication.class, args);
     }
 
 }
