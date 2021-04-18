@@ -1,10 +1,19 @@
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
 server:
   port: 8780
 spring:
   application:
     name: vast-system
+  profiles:
+    active: dev
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+mybatis-plus:
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+  global-config:
+    db-column-underline: true
+    refresh-mapper: true
+    configuration:
+      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 

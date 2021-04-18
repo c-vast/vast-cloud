@@ -12,7 +12,15 @@
     <artifactId>vast-service</artifactId>
 
     <dependencies>
-
+        <dependency>
+            <groupId>com.cvast</groupId>
+            <artifactId>vast-dao</artifactId>
+            <version>${vast-cloud.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.common</groupId>
+            <artifactId>project-common</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

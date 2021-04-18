@@ -12,6 +12,18 @@
     <artifactId>vast-model</artifactId>
 
     <dependencies>
-
+        <dependency>
+            <groupId>com.cvast</groupId>
+            <artifactId>vast-common</artifactId>
+            <version>${vast-cloud.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.common</groupId>
+            <artifactId>project-common</artifactId>
+        </dependency>
     </dependencies>
 </project>
