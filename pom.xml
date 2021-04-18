@@ -45,12 +45,6 @@
         <dependencies>
 
             <dependency>
-                <groupId>com.common</groupId>
-                <artifactId>project-common</artifactId>
-                <version>${project.common.version}</version>
-            </dependency>
-
-            <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
                 <version>${spring-cloud.version}</version>
