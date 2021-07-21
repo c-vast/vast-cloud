@@ -10,6 +10,7 @@
     <modules>
         <module>vast-eureka</module>
         <module>vast-common</module>
+        <module>vast-gateway</module>
     </modules>
 
     <packaging>pom</packaging>
