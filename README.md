@@ -9,4 +9,4 @@
   * zuul
 
 ---
-备注:项目启动流程 vast-eureka => vast-gateway => vast-auth
+备注:项目启动流程 eureka、gateway

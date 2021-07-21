@@ -4,11 +4,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.cvast</groupId>
+    <groupId>com.vast</groupId>
     <artifactId>vast-cloud</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
+    <modules>
+        <module>vast-eureka</module>
+        <module>vast-common</module>
+    </modules>
 
     <packaging>pom</packaging>
+
+    <properties>
+        <vast-cloud.version>1.0.0-SNAPSHOT</vast-cloud.version>
+        <spring-cloud.version>Hoxton.SR6</spring-cloud.version>
+        <swagger2.version>2.9.2</swagger2.version>
+    </properties>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -16,34 +26,8 @@
         <version>2.3.2.RELEASE</version>
     </parent>
 
-    <modules>
-        <module>vast-common</module>
-        <module>vast-model</module>
-        <module>vast-service</module>
-        <module>vast-dao</module>
-
-        <module>vast-eureka</module>
-        <module>vast-auth</module>
-        <module>vast-gateway</module>
-        <module>vast-system</module>
-    </modules>
-
-
-    <properties>
-        <vast-cloud.version>1.0-SNAPSHOT</vast-cloud.version>
-        <spring-cloud.version>Hoxton.SR6</spring-cloud.version>
-        <spring.version>2.2.0.M4</spring.version>
-        <lombok.version>1.18.18</lombok.version>
-        <project.common.version>1.0.0-SNAPSHOT</project.common.version>
-        <mysql.version>8.0.11</mysql.version>
-        <druid.version>1.1.22</druid.version>
-        <mybatis-plus.version>3.3.2</mybatis-plus.version>
-        <swagger2.version>2.9.2</swagger2.version>
-    </properties>
-
     <dependencyManagement>
         <dependencies>
-
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -51,30 +35,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
-            </dependency>
-
-
-            <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>${mysql.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>druid</artifactId>
-                <version>${druid.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybatis-plus.version}</version>
-            </dependency>
-
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
@@ -85,26 +45,13 @@
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${swagger2.version}</version>
             </dependency>
-
-
-
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <optional>true</optional>
         </dependency>
     </dependencies>
-
-    <build>
-        <finalName>vast-cloud</finalName>
-    </build>
-
 </project>
