@@ -2,6 +2,7 @@ package com.vast.gateway.component;
 
 import org.springframework.cloud.netflix.zuul.filters.Route;
 import org.springframework.cloud.netflix.zuul.filters.RouteLocator;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import springfox.documentation.swagger.web.SwaggerResource;
 import springfox.documentation.swagger.web.SwaggerResourcesProvider;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@Primary
 public class GatewaySwaggerResourcesProvider implements SwaggerResourcesProvider {
     private final RouteLocator routeLocator;
 

@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * Copyright (C), 2020-2021, c-vast
@@ -19,6 +20,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnableFeignClients
 @ComponentScan(value = "com.vast.*")
+@EnableSwagger2
 public class VastSystemApplication {
     public static void main(String[] args) {
         SpringApplication.run(VastSystemApplication.class,args);

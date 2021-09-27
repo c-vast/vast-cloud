@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * Copyright (C), 2020-2021, c-vast
@@ -20,6 +21,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableZuulProxy
 @EnableEurekaClient
 @EnableFeignClients
+@EnableSwagger2
 public class VastGatewayApplication {
     public static void main(String[] args) {
         SpringApplication.run(VastGatewayApplication.class, args);

@@ -8,6 +8,8 @@ import com.vast.common.base.controller.BaseController;
 import com.vast.common.dto.UserDto;
 import com.vast.system.entity.User;
 import com.vast.system.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +33,14 @@ import java.util.Date;
 @RestController
 @RequestMapping("user")
 @Slf4j
+@Api(description = "用户接口")
 public class UserController extends BaseController {
     @Autowired
     private UserService userService;
 
     @PostMapping("insert")
     @ResponseResult
+    @ApiOperation("插入用户")
     private boolean insert(@Validated(InsertValid.class)@RequestBody UserDto dto){
         User user=new User();
         BeanUtils.copyProperties(dto,user);
