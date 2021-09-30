@@ -16,21 +16,15 @@ import java.util.Map;
 @Component
 public class HttpOperator {
 
-    private OkHttpClient client = new OkHttpClient();
+    public final static String APPLICATION_JSON = "application/json";
 
-    /**
-     * 构造通用的get-request
-     *
-     * @param url       请求路径
-     * @param headerMap 请求头key-value
-     * @return
-     * @throws Exception
-     */
+    private final OkHttpClient client = new OkHttpClient();
+
     private Request commonGetRequest(String url, Map<String, String> headerMap) throws Exception {
         Request.Builder builder = new Request.Builder();
 
         Request request;
-        if (headerMap != null && headerMap.keySet() != null && headerMap.keySet().size() > 0) {
+        if (headerMap != null && headerMap.keySet().size() > 0) {
             Headers headers = Headers.of(headerMap);
             request = builder.get()
                     .url(url)
@@ -46,7 +40,7 @@ public class HttpOperator {
 
     private Request.Builder commonPostBuilder(String url, Map<String, String> headerMap) throws Exception {
         Request.Builder builder;
-        if (headerMap != null && headerMap.keySet() != null && headerMap.keySet().size() > 0) {
+        if (headerMap != null && headerMap.keySet().size() > 0) {
             Headers headers = Headers.of(headerMap);
             builder = new Request.Builder()
                     .url(url)
@@ -58,36 +52,20 @@ public class HttpOperator {
         return builder;
     }
 
-
-    /**
-     * get请求
-     *
-     * @param url       请求url
-     * @param headerMap 请求头map
-     * @return 结果字符串
-     */
     public String get(String url, Map<String, String> headerMap) throws Exception {
         Request request = commonGetRequest(url, headerMap);
 
         Response response;
         try {
             response = client.newCall(request).execute();
+            assert response.body() != null;
             return response.body().string();
         } catch (Exception e) {
-            log.error("发送同步-get请求发生异常：url={} ", e.fillInStackTrace());
+            log.error("get请求发生异常", e.fillInStackTrace());
         }
         return null;
     }
 
-    /**
-     * post请求
-     *
-     * @param url         请求Url
-     * @param headerMap   请求头map
-     * @param contentType 请求内容类型
-     * @param data        请求体数据-对象序列化后的字符串格式数据
-     * @return 结果字符串
-     */
     public String post(String url, Map<String, String> headerMap, String contentType, String data) throws Exception {
         Request.Builder builder = commonPostBuilder(url, headerMap);
 
@@ -104,20 +82,15 @@ public class HttpOperator {
         Response response;
         try {
             response = client.newCall(request).execute();
+            assert response.body() != null;
             return response.body().string();
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("post请求发生异常", e.fillInStackTrace());
         }
         return null;
     }
 
 
-    /**
-     * post请求--无请求体
-     *
-     * @param url 请求Url
-     * @return 结果字符串
-     */
     public String post(String url) throws Exception {
         Request.Builder builder = new Request.Builder().url(url);
         FormBody.Builder bodyBuilder = new FormBody.Builder();
@@ -126,23 +99,14 @@ public class HttpOperator {
         Response response;
         try {
             response = client.newCall(request).execute();
+            assert response.body() != null;
             return response.body().string();
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("post请求发生异常", e.fillInStackTrace());
         }
         return null;
     }
 
-
-    /**
-     * post请求
-     *
-     * @param url
-     * @param headerMap
-     * @param bodyParams 请求体数据-map格式
-     * @return
-     * @throws Exception
-     */
     public String post(String url, Map<String, String> headerMap, Map<String, String> bodyParams) throws Exception {
         Request.Builder builder = commonPostBuilder(url, headerMap);
 
@@ -155,27 +119,19 @@ public class HttpOperator {
         Response response;
         try {
             response = client.newCall(request).execute();
+            assert response.body() != null;
             return response.body().string();
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("post请求发生异常", e.fillInStackTrace());
         }
         return null;
     }
 
-    /**
-     * post请求
-     *
-     * @param params
-     * @return 备注：form表单提交
-     */
     private RequestBody setRequestBody(Map<String, String> params) {
         RequestBody body;
         FormBody.Builder formBuilder = new FormBody.Builder();
-        if (params != null && params.keySet() != null && params.keySet().size() > 0) {
-            String key;
-            Iterator<String> iterator = params.keySet().iterator();
-            while (iterator.hasNext()) {
-                key = iterator.next();
+        if (params != null && params.keySet().size() > 0) {
+            for (String key : params.keySet()) {
                 formBuilder.add(key, params.get(key));
             }
         }
