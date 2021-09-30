@@ -2,7 +2,7 @@ server:
   port: 8762
 spring:
   application:
-    name: vast-gate
+    name: vast-gateway
 
 
 eureka:
