@@ -7,73 +7,73 @@ public class MyBuffer {
 
     private final int MAX_LENGTH = 1024;
 
-    private final ByteBuffer buffer;
+    private final ByteBuffer BUFFER;
 
     public MyBuffer() {
-        buffer = ByteBuffer.allocate(MAX_LENGTH);
-        buffer.mark();
+        BUFFER = ByteBuffer.allocate(MAX_LENGTH);
+        BUFFER.mark();
     }
 
     public MyBuffer(byte[] bytes) {
-        buffer = ByteBuffer.allocate(MAX_LENGTH);
-        buffer.mark();
-        buffer.put(bytes);
-        buffer.limit(bytes.length);
-        buffer.reset();
+        BUFFER = ByteBuffer.allocate(MAX_LENGTH);
+        BUFFER.mark();
+        BUFFER.put(bytes);
+        BUFFER.limit(bytes.length);
+        BUFFER.reset();
     }
 
     public void clear() {
-        buffer.clear();
-        buffer.mark();
+        BUFFER.clear();
+        BUFFER.mark();
     }
 
     public boolean hasRemain() {
-        return buffer.remaining() > 0;
+        return BUFFER.remaining() > 0;
     }
 
     public byte[] array() {
-        int pos = buffer.position();
+        int pos = BUFFER.position();
         byte[] data = new byte[pos];
-        buffer.reset();
-        buffer.get(data);
+        BUFFER.reset();
+        BUFFER.get(data);
         return data;
     }
 
     public void put(byte b) {
-        buffer.put(b);
+        BUFFER.put(b);
     }
 
     public void put(byte[] b) {
-        buffer.put(b);
+        BUFFER.put(b);
     }
 
     public void put(short s) {
-        buffer.putShort(s);
+        BUFFER.putShort(s);
     }
 
     public void put(int i) {
-        buffer.putInt(i);
+        BUFFER.putInt(i);
     }
 
     public void put(long l) {
-        buffer.putLong(l);
+        BUFFER.putLong(l);
     }
 
     public void putByte(int i) {
-        buffer.put((byte) i);
+        BUFFER.put((byte) i);
     }
 
     public void putShort(int i) {
-        buffer.putShort((short) i);
+        BUFFER.putShort((short) i);
     }
 
     public void putInt(long l) {
-        buffer.putInt((int) l);
+        BUFFER.putInt((int) l);
     }
 
     public void put(String str) {
         byte[] bytes = str.getBytes(Charset.forName("GBK"));
-        buffer.put(bytes);
+        BUFFER.put(bytes);
     }
 
     public void put(String str, int len) {
@@ -81,41 +81,41 @@ public class MyBuffer {
         byte[] bytes = str.getBytes(Charset.forName("GBK"));
         int min = Math.min(data.length, bytes.length);
         System.arraycopy(bytes, 0, data, 0, min);
-        buffer.put(data);
+        BUFFER.put(data);
     }
 
     public byte get() {
-        return buffer.get();
+        return BUFFER.get();
     }
 
     public int getUnsignedByte() {
-        return buffer.get() & 0x0FF;
+        return BUFFER.get() & 0x0FF;
     }
 
     public byte[] get(int len) {
         byte[] data = new byte[len];
-        buffer.get(data);
+        BUFFER.get(data);
         return data;
     }
 
     public short getShort() {
-        return buffer.getShort();
+        return BUFFER.getShort();
     }
 
     public int getUnsignedShort() {
-        return buffer.getShort() & 0xFFFF;
+        return BUFFER.getShort() & 0xFFFF;
     }
 
     public int getInt() {
-        return buffer.getInt();
+        return BUFFER.getInt();
     }
 
     public long getUnsignedInt() {
-        return buffer.getInt() & 0x0FFFFFFFFL;
+        return BUFFER.getInt() & 0x0FFFFFFFFL;
     }
 
     public long getLong() {
-        return buffer.getLong();
+        return BUFFER.getLong();
     }
 
     public String getString(int len) {
