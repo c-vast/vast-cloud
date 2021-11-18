@@ -1,5 +1,7 @@
 package com.vast.common.base.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -17,6 +19,8 @@ import java.util.Date;
 @Data
 public abstract class BaseEntity<PK extends Serializable> implements Serializable {
     private PK id;
+    @TableField(fill = FieldFill.INSERT)
     private Date createTime;
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
 }

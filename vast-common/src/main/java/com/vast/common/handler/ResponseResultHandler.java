@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletRequest;
  * @description: 响应结果处理
  */
 @ControllerAdvice
-public class ResponseResultHander implements ResponseBodyAdvice<Object> {
+public class ResponseResultHandler implements ResponseBodyAdvice<Object> {
     @Override
     public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> aClass) {
         ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
