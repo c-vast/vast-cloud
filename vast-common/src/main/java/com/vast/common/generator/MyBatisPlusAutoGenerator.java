@@ -43,7 +43,7 @@ public class MyBatisPlusAutoGenerator {
         autoGenerator.setGlobalConfig(globalConfig);
 
         PackageConfig packageConfig = new PackageConfig();
-        packageConfig.setParent("com.cvast");
+        packageConfig.setParent("com.vast");
         packageConfig.setModuleName("system");
         packageConfig.setController("controller");
         packageConfig.setService("service");

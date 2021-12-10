@@ -1,0 +1,7 @@
+battcn:
+  security:
+    token:
+      expiration-time: 10 # 分钟
+      refresh-exp-time: 30 # 分钟
+      issuer: http://www.vast.com
+      signing-key: fa647256f7484f6593cfaa92e097061e

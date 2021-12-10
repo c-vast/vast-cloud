@@ -19,5 +19,5 @@ zuul:
   prefix: /api #为zuul设置一个公共的前缀
   routes:
     system:
-      path: /system/**
+      path: /sys/**
       serviceId: vast-system
