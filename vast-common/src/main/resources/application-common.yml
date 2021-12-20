@@ -1,4 +1,4 @@
-battcn:
+vast:
   security:
     token:
       expiration-time: 10 # 分钟
