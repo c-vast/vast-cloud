@@ -1,8 +1,9 @@
 package com.vast.gateway.component;
 
+import com.vast.common.enums.ResultCode;
+import com.vast.common.result.Result;
+import com.vast.common.util.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
 import org.springframework.cloud.netflix.zuul.filters.route.FallbackProvider;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -48,14 +49,9 @@ public class GatewayZuulFallback implements FallbackProvider {
 
             @Override
             public InputStream getBody() throws IOException {
-                JSONObject r = new JSONObject();
-                try {
-                    r.put("code", "9999");
-                    r.put("message", "系统错误，请求失败");
-                } catch (JSONException e) {
-                    log.error(e.getMessage(),e);
-                }
-                return new ByteArrayInputStream(r.toString().getBytes(StandardCharsets.UTF_8));
+                Result<Object> failure = Result.failure(ResultCode.SYSTEM_ERROR);
+                String s = JsonUtils.objectToJson(failure);
+                return new ByteArrayInputStream(s.getBytes(StandardCharsets.UTF_8));
             }
 
             @Override
