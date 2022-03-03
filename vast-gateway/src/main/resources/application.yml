@@ -21,3 +21,6 @@ zuul:
     system:
       path: /sys/**
       serviceId: vast-system
+    auth:
+      path: /auth/**
+      serviceId: vast-auth

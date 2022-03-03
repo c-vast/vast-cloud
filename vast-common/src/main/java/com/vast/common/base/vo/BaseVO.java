@@ -14,6 +14,6 @@ import java.io.Serializable;
  * @description:
  */
 @Data
-public class BaseVo<ID extends Serializable> implements Serializable {
+public class BaseVO<ID extends Serializable> implements Serializable {
     private ID id;
 }

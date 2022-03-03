@@ -1,6 +1,6 @@
 package com.vast.common.vo;
 
-import com.vast.common.base.vo.BaseVo;
+import com.vast.common.base.vo.BaseVO;
 import lombok.Data;
 
 /**
@@ -13,8 +13,11 @@ import lombok.Data;
  * @description:
  */
 @Data
-public class UserVo extends BaseVo<Long> {
-    private String userName;
-    private String loginAccount;
+public class UserVO extends BaseVO<Long> {
+    private String username;
+    private String password;
+    private String nickname;
+    private String email;
+    private String mobile;
     private String token;
 }

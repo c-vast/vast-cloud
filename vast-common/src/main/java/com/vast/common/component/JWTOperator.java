@@ -9,16 +9,4 @@ public class JWTOperator {
 
     @Autowired
     private TokenProperties tokenProperties;
-
-    public String create(){
-        return null;
-    }
-
-    public void parse(){
-
-    }
-
-    public void verify(){
-
-    }
 }

@@ -16,7 +16,6 @@ import java.io.Serializable;
  * @description:
  */
 @Data
-public abstract class BaseDto<ID extends Serializable> implements Serializable {
-    @NotNull(message = "id不能为空", groups = {UpdateValid.class})
+public abstract class BaseDTO<ID extends Serializable> implements Serializable {
     private ID id;
 }

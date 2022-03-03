@@ -10,7 +10,7 @@ import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import com.vast.common.base.controller.BaseController;
-import com.vast.common.base.entity.BaseEntity;
+import com.vast.common.base.entity.BaseDO;
 
 /**
  * Copyright (C), 2020-2021, c-vast
@@ -60,7 +60,7 @@ public class MyBatisPlusAutoGenerator {
         strategyConfig.setNaming(NamingStrategy.underline_to_camel);
         strategyConfig.setColumnNaming(NamingStrategy.underline_to_camel);
         strategyConfig.setSuperControllerClass(BaseController.class);
-        strategyConfig.setSuperEntityClass(BaseEntity.class);
+        strategyConfig.setSuperEntityClass(BaseDO.class);
         strategyConfig.setTablePrefix("t_"+packageConfig.getModuleName() + "_");
         strategyConfig.setSuperEntityColumns("id","create_time","update_time");
         autoGenerator.setStrategy(strategyConfig);

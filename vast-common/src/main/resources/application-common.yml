@@ -1,7 +1,13 @@
 vast:
   security:
     token:
-      expiration-time: 10 # 分钟
-      refresh-exp-time: 30 # 分钟
+      expiration-time: 7200 # 秒
+      refresh-exp-time: 604800 # 秒
       issuer: http://www.vast.com
       signing-key: fa647256f7484f6593cfaa92e097061e
+  minio:
+    bucket-name: vast
+    access-key: admin
+    secret-key: admin
+    endpoint: http://localhost:9000
+
