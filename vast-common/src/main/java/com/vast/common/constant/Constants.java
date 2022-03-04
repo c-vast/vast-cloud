@@ -11,4 +11,6 @@ package com.vast.common.constant;
  */
 public interface Constants {
     String RESPONSE_RESULT = "RESPONSE_RESULT";
+
+    String AUTHORIZATION="Authorization";
 }

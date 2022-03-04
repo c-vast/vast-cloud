@@ -7,7 +7,6 @@ import com.vast.common.util.Utils;
 import com.vast.system.entity.SysUserInfo;
 import com.vast.system.mapper.SysUserInfoMapper;
 import com.vast.system.service.UserService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

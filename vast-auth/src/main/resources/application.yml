@@ -1,5 +1,5 @@
 server:
-  port: 8764
+  port: 7003
 spring:
   application:
     name: vast-auth
@@ -11,4 +11,4 @@ eureka:
     prefer-ip-address: true
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://localhost:7001/eureka/
