@@ -19,7 +19,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableEurekaClient
 @SpringBootApplication
 @EnableFeignClients
-@ComponentScan(value = "com.vast.*")
+@ComponentScan(value = "com.vast")
 @EnableSwagger2
 public class VastSystemApplication {
     public static void main(String[] args) {

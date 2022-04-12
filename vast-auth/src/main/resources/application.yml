@@ -3,6 +3,8 @@ server:
 spring:
   application:
     name: vast-auth
+  profiles:
+    include: common
 
 
 eureka:

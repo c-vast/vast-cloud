@@ -3,6 +3,8 @@ server:
 spring:
   application:
     name: vast-gateway
+  profiles:
+    include: common
 
 
 eureka:

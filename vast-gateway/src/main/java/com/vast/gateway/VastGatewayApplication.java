@@ -1,10 +1,12 @@
 package com.vast.gateway;
 
+import com.vast.common.config.MinioConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.ComponentScan;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
@@ -22,6 +24,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableEurekaClient
 @EnableFeignClients
 @EnableSwagger2
+@ComponentScan(basePackages = "com.vast")
 public class VastGatewayApplication {
     public static void main(String[] args) {
         SpringApplication.run(VastGatewayApplication.class, args);
