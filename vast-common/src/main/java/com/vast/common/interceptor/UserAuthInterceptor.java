@@ -25,21 +25,23 @@ public class UserAuthInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        HandlerMethod handlerMethod = (HandlerMethod) handler;
-        IgnoreUserToken annotation = handlerMethod.getBeanType().getAnnotation(IgnoreUserToken.class);
-        if (annotation == null) {
-            annotation = handlerMethod.getMethodAnnotation(IgnoreUserToken.class);
-        }
-        if (annotation != null) {
-            return super.preHandle(request, response, handler);
-        }
-        String token = request.getHeader(Constants.AUTHORIZATION);
-        if (StringUtils.isEmpty(token)) {
-            throw new GlobalException("令牌不存在");
-        }
-        Claims claims = jwtOperator.verifyJWT(token);
-        if (claims==null){
-            throw new GlobalException("令牌过期或令牌无效");
+        if (handler instanceof HandlerMethod){
+            HandlerMethod handlerMethod = (HandlerMethod) handler;
+            IgnoreUserToken annotation = handlerMethod.getBeanType().getAnnotation(IgnoreUserToken.class);
+            if (annotation == null) {
+                annotation = handlerMethod.getMethodAnnotation(IgnoreUserToken.class);
+            }
+            if (annotation != null) {
+                return super.preHandle(request, response, handler);
+            }
+            String token = request.getHeader(Constants.AUTHORIZATION);
+            if (StringUtils.isEmpty(token)) {
+                throw new GlobalException("令牌不存在");
+            }
+            Claims claims = jwtOperator.verifyJWT(token);
+            if (claims==null){
+                throw new GlobalException("令牌过期或令牌无效");
+            }
         }
         return super.preHandle(request, response, handler);
     }

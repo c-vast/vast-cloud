@@ -6,8 +6,8 @@ import java.util.Arrays;
 import java.util.UUID;
 
 public class AppUtils {
-    private final static String SERVER_NAME = "com.vast";
-    private final static String[] CHARACTERS = new String[]{"a", "b", "c", "d", "e", "f",
+    private static final String SERVER_NAME = "com.vast";
+    private static final String[] CHARACTERS = new String[]{"a", "b", "c", "d", "e", "f",
             "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s",
             "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5",
             "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I",

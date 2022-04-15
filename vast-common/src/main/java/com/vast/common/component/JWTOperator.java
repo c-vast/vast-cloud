@@ -14,6 +14,7 @@ import java.util.Map;
 @Component
 public class JWTOperator {
 
+    private static final SignatureAlgorithm SIGNATURE_ALGORITHM = SignatureAlgorithm.HS256;
     @Autowired
     private TokenProperties tokenProperties;
 
@@ -54,7 +55,7 @@ public class JWTOperator {
     }
 
     private String generate(Map<String, Object> claims,long expTime){
-        SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+
         long nowMillis = System.currentTimeMillis();
         Date now = new Date(nowMillis);
         Date exp = new Date(nowMillis + expTime);
@@ -63,7 +64,7 @@ public class JWTOperator {
                 .setClaims(claims)
                 .setIssuedAt(now)
                 .setIssuer(tokenProperties.getIssuer())
-                .signWith(signatureAlgorithm, secretKey)
+                .signWith(SIGNATURE_ALGORITHM, secretKey)
                 .setExpiration(exp);
         return builder.compact();
     }

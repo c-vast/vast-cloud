@@ -13,6 +13,7 @@
         <module>vast-gateway</module>
         <module>vast-system</module>
         <module>vast-auth</module>
+        <module>vast-websocket</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -32,6 +33,7 @@
         <jjwt.version>0.9.1</jjwt.version>
         <minio.version>8.3.0</minio.version>
         <easyexcel.version>2.2.10</easyexcel.version>
+        <retrofit.version>2.2.22</retrofit.version>
     </properties>
 
     <parent>
@@ -118,6 +120,11 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>easyexcel</artifactId>
                 <version>${easyexcel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.lianjiatech</groupId>
+                <artifactId>retrofit-spring-boot-starter</artifactId>
+                <version>${retrofit.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

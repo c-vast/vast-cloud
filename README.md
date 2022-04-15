@@ -7,6 +7,7 @@
   * spring-cloud
   * eureka
   * zuul
+  * websocket
 
 ---
-备注:项目启动流程 eureka（7001）、gateway（7002）、auth（7003）、system（7004）
+备注:项目启动流程 eureka（7001）、gateway（7002）、auth（7003）、system（7004）、websocket（7005）

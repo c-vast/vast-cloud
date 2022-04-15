@@ -16,7 +16,7 @@ import java.util.Map;
 @Component
 public class HttpOperator {
 
-    public final static String APPLICATION_JSON = "application/json";
+    public static final String APPLICATION_JSON = "application/json";
 
     private final OkHttpClient client = new OkHttpClient();
 
