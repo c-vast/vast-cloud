@@ -13,4 +13,6 @@ public interface Constants {
     String RESPONSE_RESULT = "RESPONSE_RESULT";
 
     String AUTHORIZATION="Authorization";
+
+    String APPLICATION_JSON_UTF8_VALUE="application/json;charset=UTF-8";
 }
