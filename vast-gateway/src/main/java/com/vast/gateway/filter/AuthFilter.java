@@ -15,7 +15,7 @@ import org.springframework.util.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 
 @Component
-public class GatewayZuulFilter extends ZuulFilter {
+public class AuthFilter extends ZuulFilter {
 
     @Autowired
     private JWTOperator jwtOperator;
@@ -27,7 +27,7 @@ public class GatewayZuulFilter extends ZuulFilter {
 
     @Override
     public int filterOrder() {
-        return 0;
+        return 1;
     }
 
     @Override

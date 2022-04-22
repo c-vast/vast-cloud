@@ -1,5 +1,6 @@
 package com.vast.gateway.component;
 
+import com.vast.common.constant.Constants;
 import com.vast.common.enums.ResultCode;
 import com.vast.common.result.Result;
 import com.vast.common.util.JsonUtils;
@@ -16,9 +17,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
-@Component
 @Slf4j
-public class GatewayZuulFallback implements FallbackProvider {
+@Component
+public class ZuulFallback implements FallbackProvider {
     @Override
     public String getRoute() {
         return "*";
@@ -57,7 +58,8 @@ public class GatewayZuulFallback implements FallbackProvider {
             @Override
             public HttpHeaders getHeaders() {
                 HttpHeaders httpHeaders = new HttpHeaders();
-                httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
+                MediaType mediaType = MediaType.parseMediaType(Constants.APPLICATION_JSON_UTF8_VALUE);
+                httpHeaders.setContentType(mediaType);
                 return httpHeaders;
             }
         };

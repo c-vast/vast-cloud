@@ -10,4 +10,6 @@ vast:
     access-key: admin
     secret-key: admin
     endpoint: http://localhost:9000
+swagger:
+  enable: true
 
