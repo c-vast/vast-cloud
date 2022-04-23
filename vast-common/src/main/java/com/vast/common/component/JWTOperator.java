@@ -1,6 +1,6 @@
 package com.vast.common.component;
 
-import com.vast.common.config.properties.TokenProperties;
+import com.vast.common.properties.TokenProperties;
 import io.jsonwebtoken.*;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.vast.common.config.properties;
+package com.vast.common.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

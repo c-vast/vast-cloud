@@ -19,7 +19,7 @@ public class UserDTO extends BaseDTO<Long> {
     private String nickname;
     private String email;
     private String mobile;
-    private Integer state;
+    private Integer enable;
 
     private String token;
     private String refreshToken;

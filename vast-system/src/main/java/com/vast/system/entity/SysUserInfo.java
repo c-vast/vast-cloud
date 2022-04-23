@@ -12,5 +12,5 @@ public class SysUserInfo extends BaseDO<Long> {
     private String nickname;
     private String email;
     private String mobile;
-    private Integer state;
+    private Integer enable;
 }

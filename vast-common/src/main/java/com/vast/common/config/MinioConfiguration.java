@@ -1,6 +1,6 @@
 package com.vast.common.config;
 
-import com.vast.common.config.properties.MinioProperties;
+import com.vast.common.properties.MinioProperties;
 import io.minio.BucketExistsArgs;
 import io.minio.MakeBucketArgs;
 import io.minio.MinioClient;
