@@ -34,7 +34,7 @@ public class LogFilter extends ZuulFilter {
         String remoteHost = request.getRemoteHost();
         String method = request.getMethod();
         String requestURI = request.getRequestURI();
-        log.info("Remote host:{},method:{},uri:{}", remoteHost, method, requestURI);
+        log.info("Filter Remote host:{},method:{},uri:{}", remoteHost, method, requestURI);
         return null;
     }
 }

@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "vast.minio")
 @Data
 public class MinioProperties {
+    private Boolean enable;
+
     private String endpoint;
 
     private String accessKey;

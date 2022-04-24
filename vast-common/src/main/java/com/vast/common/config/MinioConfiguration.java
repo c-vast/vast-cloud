@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
 @Slf4j
+@Configuration
 public class MinioConfiguration {
 
     @Autowired
@@ -24,10 +24,12 @@ public class MinioConfiguration {
                 .build();
         String bucketName = minioProperties.getBucketName();
         try {
-            boolean isExists = minioClient.bucketExists(BucketExistsArgs.builder().bucket(bucketName).build());
-            if (!isExists){
-                minioClient.makeBucket(MakeBucketArgs.builder().bucket(bucketName).build());
-            }
+           if (minioProperties.getEnable()){
+               boolean isExists = minioClient.bucketExists(BucketExistsArgs.builder().bucket(bucketName).build());
+               if (!isExists){
+                   minioClient.makeBucket(MakeBucketArgs.builder().bucket(bucketName).build());
+               }
+           }
         } catch (Exception e) {
             log.error(e.getMessage(),e);
         }

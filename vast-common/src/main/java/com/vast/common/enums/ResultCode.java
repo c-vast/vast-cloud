@@ -20,7 +20,8 @@ public enum ResultCode {
     PARAM_TYPE_BIND_ERROR(1003, "参数类型错误"),
     PARAM_NOT_COMPLETE(1004, "参数缺失"),
     PARAM_VALIDATION_ERROR(1005,"参数未通过校验"),
-    USER_NOTLOGGED_IN(2001, "用户未登录"),
+    PARAM_ERROR(1006,"参数不正确"),
+    USER_NOT_LOG_IN(2001, "用户未登录"),
     USER_LOGIN_ERROR(2002, "账号不存在或密码错误"),
     SYSTEM_ERROR(10000, "系统异常，请稍后重试");
 

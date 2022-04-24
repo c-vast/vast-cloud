@@ -2,6 +2,7 @@ package com.vast.auth.config;
 
 import com.vast.auth.service.AuthUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,7 +23,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * @description:
  */
 @Configuration
-@EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -48,13 +48,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .formLogin()
-                .and()
-                .csrf()
-                .disable()
-                .httpBasic();
+                .requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll()
+                .antMatchers("/rsa/publicKey").permitAll()
+                .antMatchers("/v2/api-docs").permitAll()
+                .anyRequest().authenticated();
     }
 }

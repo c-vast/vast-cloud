@@ -59,7 +59,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(BindException.class)
-    public Result<Object> handleBindExcpetion(BindException e, HttpServletRequest request) {
+    public Result<Object> handleBindException(BindException e, HttpServletRequest request) {
         log.error("发生参数绑定异常：{}",e.getMessage(), e);
         return Result.failure(ResultCode.PARAM_TYPE_BIND_ERROR,e.getAllErrors().get(0).getDefaultMessage());
     }
@@ -78,7 +78,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public Result<Object> handleHttpMessageNotReadableException(HttpMessageNotReadableException e, HttpServletRequest request) {
-        log.error("请求接口HttpMessageNotReadableExceptio异常：{}",e.getMessage(),e);
+        log.error("请求接口HttpMessageNotReadableException异常：{}",e.getMessage(),e);
         return Result.failure(ResultCode.FAILURE);
     }
 
@@ -86,5 +86,11 @@ public class GlobalExceptionHandler {
     public Result<Object> handleMissingServletRequestParameterException(MissingServletRequestParameterException e, HttpServletRequest request) {
         log.error("请求接口MissingServletRequestParameterException异常：{}",e.getMessage(),e);
         return Result.failure(ResultCode.PARAM_NOT_COMPLETE);
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public Result<Object> handleIllegalArgumentException(IllegalArgumentException e,HttpServletRequest request){
+        log.error("请求接口IllegalArgumentException异常：{}",e.getMessage(),e);
+        return Result.failure(ResultCode.PARAM_ERROR,e.getMessage());
     }
 }

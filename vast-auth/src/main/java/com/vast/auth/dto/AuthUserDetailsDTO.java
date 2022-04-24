@@ -23,11 +23,12 @@ import java.util.Collection;
 public class AuthUserDetailsDTO implements UserDetails {
 
     private UserDTO userDTO;
+    private Collection<GrantedAuthority> authorities;
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return new ArrayList<>();
+        return authorities;
     }
 
     @Override

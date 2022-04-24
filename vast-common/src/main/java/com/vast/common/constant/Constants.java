@@ -14,5 +14,7 @@ public interface Constants {
 
     String AUTHORIZATION="Authorization";
 
+    String UTF8="UTF-8";
     String APPLICATION_JSON_UTF8_VALUE="application/json;charset=UTF-8";
+    String JWT_TOKEN_PREFIX="bearer";
 }

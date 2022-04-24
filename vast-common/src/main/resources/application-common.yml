@@ -5,7 +5,13 @@ vast:
       refresh-exp-time: 604800 # 秒
       issuer: http://www.vast.com
       signing-key: fa647256f7484f6593cfaa92e097061e
+    ignore:
+      urls: #配置白名单路径
+        - "/actuator/**"
+        - "/auth/oauth/token"
+        - "/v2/api-docs"
   minio:
+    enable: false
     bucket-name: vast
     access-key: admin
     secret-key: admin

@@ -27,6 +27,8 @@ public class ZuulFallback implements FallbackProvider {
 
     @Override
     public ClientHttpResponse fallbackResponse(String route, Throwable cause) {
+        log.error("fallbackResponse {}",route);
+        log.error(cause.getMessage(),cause);
         return new ClientHttpResponse() {
             @Override
             public HttpStatus getStatusCode() throws IOException {

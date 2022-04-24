@@ -4,6 +4,7 @@ import com.vast.auth.enhancer.AuthTokenEnhancer;
 import com.vast.auth.service.AuthClientDetailsService;
 import com.vast.auth.service.AuthUserDetailsService;
 import com.vast.common.properties.TokenProperties;
+import com.vast.common.util.RSAUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,12 +15,14 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
+import java.security.KeyPair;
 import java.util.Arrays;
 
 /**
@@ -32,7 +35,6 @@ import java.util.Arrays;
  * @description:
  */
 @Configuration
-@EnableAuthorizationServer
 public class AuthServerConfiguration extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
@@ -54,14 +56,13 @@ public class AuthServerConfiguration extends AuthorizationServerConfigurerAdapte
                 .secret(passwordEncoder.encode("admin123456"))
                 .accessTokenValiditySeconds(tokenProperties.getExpirationTime())
                 .refreshTokenValiditySeconds(tokenProperties.getRefreshExpTime())
-                .redirectUris("http://www.baidu.com")
-                .autoApprove(true) //自动授权配置
                 .scopes("all")
-                .authorizedGrantTypes("authorization_code","password","refresh_token");
+                .authorizedGrantTypes("password","refresh_token");
     }
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+        security.allowFormAuthenticationForClients();
     }
 
     @Override
@@ -84,11 +85,17 @@ public class AuthServerConfiguration extends AuthorizationServerConfigurerAdapte
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
         converter.setSigningKey(tokenProperties.getSigningKey());
+        //converter.setKeyPair(keyPair());
         return converter;
     }
 
     @Bean
     public TokenEnhancer tokenEnhancer() {
         return new AuthTokenEnhancer();
+    }
+
+    @Bean
+    public KeyPair keyPair(){
+        return RSAUtils.generateKeyPair(tokenProperties.getSigningKey());
     }
 }
