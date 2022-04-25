@@ -9,7 +9,7 @@ create table oauth_client_details (
   access_token_validity INTEGER,   -- 设置颁发token的有效期
   refresh_token_validity INTEGER,  -- 颁发refresh_token的有效期(不设置不会同时颁发refresh_token)
   additional_information VARCHAR(4096),
-  autoapprove VARCHAR(256)     -- 设置为true,授权码模式下自动授权
+  auto_approve VARCHAR(256)     -- 设置为true,授权码模式下自动授权
 );
 CREATE TABLE `t_sys_userinfo` (
   `id` bigint NOT NULL,

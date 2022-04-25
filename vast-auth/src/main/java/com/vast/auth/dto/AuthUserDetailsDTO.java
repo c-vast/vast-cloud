@@ -1,13 +1,14 @@
 package com.vast.auth.dto;
 
-import com.vast.common.dto.UserDTO;
+import com.vast.common.dto.UserInfoDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Copyright (C), 2020-2022, c-vast
@@ -22,23 +23,22 @@ import java.util.Collection;
 @AllArgsConstructor
 public class AuthUserDetailsDTO implements UserDetails {
 
-    private UserDTO userDTO;
-    private Collection<GrantedAuthority> authorities;
+    private UserInfoDTO userInfoDTO;
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return AuthorityUtils.createAuthorityList(userInfoDTO.getRoleSign());
     }
 
     @Override
     public String getPassword() {
-        return userDTO.getPassword();
+        return userInfoDTO.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return userDTO.getUsername();
+        return userInfoDTO.getUsername();
     }
 
     @Override
@@ -58,6 +58,6 @@ public class AuthUserDetailsDTO implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return userDTO.getEnable()>0;
+        return userInfoDTO.getEnable()>0;
     }
 }

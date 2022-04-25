@@ -1,11 +1,14 @@
 package com.vast.auth.dto;
 
+import com.vast.common.dto.ClientInfoDTO;
+import com.vast.common.util.JsonUtils;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.provider.ClientDetails;
+import org.springframework.util.StringUtils;
 
-import java.util.Collection;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Copyright (C), 2020-2022, c-vast
@@ -16,69 +19,74 @@ import java.util.Set;
  * @createDate: 2022/4/23 15:13
  * @description:
  */
+@Data
+@AllArgsConstructor
 public class AuthClientDetailsDTO implements ClientDetails {
+
+    private ClientInfoDTO clientInfoDTO;
+
     @Override
     public String getClientId() {
-        return null;
+        return clientInfoDTO.getClientId();
     }
 
     @Override
     public Set<String> getResourceIds() {
-        return null;
+        return new HashSet<>(Arrays.asList(clientInfoDTO.getResourceIds().split(",")));
     }
 
     @Override
     public boolean isSecretRequired() {
-        return false;
+        return !StringUtils.isEmpty(clientInfoDTO.getClientSecret());
     }
 
     @Override
     public String getClientSecret() {
-        return null;
+        return clientInfoDTO.getClientSecret();
     }
 
     @Override
     public boolean isScoped() {
-        return false;
+        return !StringUtils.isEmpty(clientInfoDTO.getScope());
     }
 
     @Override
     public Set<String> getScope() {
-        return null;
+        return new HashSet<>(Arrays.asList(clientInfoDTO.getScope().split(",")));
     }
 
     @Override
     public Set<String> getAuthorizedGrantTypes() {
-        return null;
+        return new HashSet<>(Arrays.asList(clientInfoDTO.getAuthorizedGrantTypes().split(",")));
     }
 
     @Override
     public Set<String> getRegisteredRedirectUri() {
-        return null;
+        return new HashSet<>(Arrays.asList(clientInfoDTO.getWebServerRedirectUri().split(",")));
     }
 
     @Override
     public Collection<GrantedAuthority> getAuthorities() {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
     public Integer getAccessTokenValiditySeconds() {
-        return null;
+        return clientInfoDTO.getAccessTokenValidity();
     }
 
     @Override
     public Integer getRefreshTokenValiditySeconds() {
-        return null;
+        return clientInfoDTO.getRefreshTokenValidity();
     }
 
     @Override
     public boolean isAutoApprove(String s) {
-        return false;
+        return !StringUtils.isEmpty(clientInfoDTO.getAutoApprove());
     }
 
     @Override
     public Map<String, Object> getAdditionalInformation() {
-        return null;
+        return JsonUtils.jsonToMap(clientInfoDTO.getAdditionalInformation(),String.class,Object.class);
     }
 }

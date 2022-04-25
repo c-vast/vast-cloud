@@ -3,7 +3,7 @@ package com.vast.auth.service.impl;
 import com.vast.auth.dto.AuthUserDetailsDTO;
 import com.vast.auth.feign.UserFeign;
 import com.vast.auth.service.AuthUserDetailsService;
-import com.vast.common.dto.UserDTO;
+import com.vast.common.dto.UserInfoDTO;
 import com.vast.common.result.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,25 +35,17 @@ public class AuthUserDetailsServiceImpl implements AuthUserDetailsService {
     @Autowired
     private UserFeign userFeign;
 
-    private static final List<AuthUserDetailsDTO> AUTH_USER_DETAILS_DTO_LIST=new ArrayList<>();
-    static {
-        UserDTO userDTO=new UserDTO();
-        userDTO.setUsername("admin");
-        userDTO.setPassword(new BCryptPasswordEncoder().encode("123456"));
-        userDTO.setEnable(1);
-        userDTO.setNickname("admin");
-        AuthUserDetailsDTO detailsDTO=new AuthUserDetailsDTO(userDTO, AuthorityUtils.createAuthorityList("ROLE_ADMIN"));
-        AUTH_USER_DETAILS_DTO_LIST.add(detailsDTO);
-    }
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        List<AuthUserDetailsDTO> collect = AUTH_USER_DETAILS_DTO_LIST.stream()
-                .filter(p -> s.equals(p.getUsername())).limit(1)
-                .collect(Collectors.toList());
-        if (Objects.isNull(collect.get(0))){
+        Result<UserInfoDTO> result = userFeign.getUserInfoByUsername(s);
+        if (result==null||!result.isSuccess()){
             throw new UsernameNotFoundException("用户不存在");
         }
-        return collect.get(0);
+        UserInfoDTO userInfoDTO = result.getData();
+        userInfoDTO.setPassword(passwordEncoder.encode(userInfoDTO.getPassword()));
+        return new AuthUserDetailsDTO(userInfoDTO);
     }
 }

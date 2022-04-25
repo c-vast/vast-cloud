@@ -1,7 +1,7 @@
 package com.vast.system.controller;
 
-import com.vast.common.dto.UserInfoDTO;
-import com.vast.system.service.UserService;
+import com.vast.common.dto.ClientInfoDTO;
+import com.vast.system.service.ClientService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.constraints.NotBlank;
 
 @RestController
-@RequestMapping("user")
-@Api(tags = "API - UserController")
+@RequestMapping("client")
+@Api(tags = "API - OAuthClientController")
 @ApiOperation("用户信息")
-public class UserController {
+public class OAuthClientController {
 
     @Autowired
-    private UserService userService;
+    private ClientService clientService;
 
-    @GetMapping("getUserInfoByUsername")
-    public UserInfoDTO getUserInfoByUsername(@NotBlank(message = "用户名不能为空") String username){
-        return userService.getUserInfoByUsername(username);
+    @GetMapping("getClientByClientId")
+    public ClientInfoDTO getClientByClientId(@NotBlank(message = "client_id不能为空")String clientId){
+        return clientService.getClientByClientId(clientId);
     }
 }

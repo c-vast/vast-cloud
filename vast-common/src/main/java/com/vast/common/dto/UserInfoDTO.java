@@ -3,6 +3,8 @@ package com.vast.common.dto;
 import com.vast.common.base.dto.BaseDTO;
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * Copyright (C), 2020-2021, c-vast
  *
@@ -13,14 +15,12 @@ import lombok.Data;
  * @description:
  */
 @Data
-public class UserDTO extends BaseDTO<Long> {
+public class UserInfoDTO extends BaseDTO<Long> {
     private String username;
     private String password;
     private String nickname;
     private String email;
     private String mobile;
     private Integer enable;
-
-    private String token;
-    private String refreshToken;
+    private String roleSign;
 }

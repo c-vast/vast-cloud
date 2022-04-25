@@ -1,10 +1,11 @@
 package com.vast.system.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.vast.common.dto.UserDTO;
+import com.vast.common.dto.UserInfoDTO;
 import com.vast.common.exception.BusinessException;
+import com.vast.common.util.IdUtils;
 import com.vast.common.util.Utils;
-import com.vast.system.entity.SysUserInfo;
+import com.vast.system.entity.SysUserInfoDO;
 import com.vast.system.mapper.SysUserInfoMapper;
 import com.vast.system.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,26 +18,26 @@ public class UserServiceImpl implements UserService {
     private SysUserInfoMapper sysUserInfoMapper;
 
     @Override
-    public UserDTO getUserInfoByUsername(String username) {
-        LambdaQueryWrapper<SysUserInfo> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(SysUserInfo::getUsername, username);
-        SysUserInfo sysUserInfo = sysUserInfoMapper.selectOne(lambdaQueryWrapper);
-        if (sysUserInfo == null) {
+    public UserInfoDTO getUserInfoByUsername(String username) {
+        LambdaQueryWrapper<SysUserInfoDO> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(SysUserInfoDO::getUsername, username);
+        SysUserInfoDO sysUserInfoDO = sysUserInfoMapper.selectOne(lambdaQueryWrapper);
+        if (sysUserInfoDO == null) {
             throw new BusinessException("用户不存在");
         }
-        UserDTO userDTO = Utils.BeanConverter(UserDTO.class, sysUserInfo);
-        return userDTO;
+        UserInfoDTO userInfoDTO = Utils.BeanConverter(UserInfoDTO.class, sysUserInfoDO);
+        userInfoDTO.setRoleSign("ROLE_ADMIN");
+        return userInfoDTO;
     }
 
     @Override
-    public UserDTO getUserInfoByUsernameAndPassword(String username, String password) {
-        LambdaQueryWrapper<SysUserInfo> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(SysUserInfo::getUsername, username).eq(SysUserInfo::getPassword, password);
-        SysUserInfo sysUserInfo = sysUserInfoMapper.selectOne(lambdaQueryWrapper);
-        if (sysUserInfo == null) {
-            throw new BusinessException("用户不存在或密码错误");
-        }
-        UserDTO userDTO = Utils.BeanConverter(UserDTO.class, sysUserInfo);
-        return userDTO;
+    public boolean saveUserInfo(SysUserInfoDO sysUserInfoDO) {
+        checkParam(sysUserInfoDO);
+        sysUserInfoDO.setId(IdUtils.getSnowflakeId());
+        return sysUserInfoMapper.insert(sysUserInfoDO)>0;
+    }
+
+    private void checkParam(SysUserInfoDO sysUserInfoDO){
+
     }
 }

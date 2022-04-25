@@ -1,7 +1,12 @@
 package com.vast.auth.service.impl;
 
+import com.vast.auth.dto.AuthClientDetailsDTO;
+import com.vast.auth.feign.ClientFeign;
 import com.vast.auth.service.AuthClientDetailsService;
+import com.vast.common.dto.ClientInfoDTO;
+import com.vast.common.result.Result;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientRegistrationException;
 import org.springframework.stereotype.Service;
@@ -18,8 +23,17 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class AuthClientDetailsServiceImpl implements AuthClientDetailsService {
+
+    @Autowired
+    private ClientFeign clientFeign;
+
     @Override
     public ClientDetails loadClientByClientId(String s) throws ClientRegistrationException {
-        return null;
+        Result<ClientInfoDTO> result = clientFeign.getClientByClientId(s);
+        if (result==null||!result.isSuccess()){
+            throw new ClientRegistrationException("客户端不存在");
+        }
+        ClientInfoDTO clientInfoDTO=result.getData();
+        return new AuthClientDetailsDTO(clientInfoDTO);
     }
 }

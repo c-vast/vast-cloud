@@ -1,8 +1,9 @@
 package com.vast.system.service;
 
-import com.vast.common.dto.UserDTO;
+import com.vast.common.dto.UserInfoDTO;
+import com.vast.system.entity.SysUserInfoDO;
 
 public interface UserService {
-    UserDTO getUserInfoByUsername(String username);
-    UserDTO getUserInfoByUsernameAndPassword(String username,String password);
+    UserInfoDTO getUserInfoByUsername(String username);
+    boolean saveUserInfo(SysUserInfoDO sysUserInfoDO);
 }
