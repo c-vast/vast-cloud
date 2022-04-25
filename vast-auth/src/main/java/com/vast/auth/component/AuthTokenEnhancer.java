@@ -1,4 +1,4 @@
-package com.vast.auth.enhancer;
+package com.vast.auth.component;
 
 import com.vast.auth.dto.AuthUserDetailsDTO;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;

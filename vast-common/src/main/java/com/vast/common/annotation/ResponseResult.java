@@ -1,8 +1,6 @@
 package com.vast.common.annotation;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  * Copyright (C), 2020-2021, c-vast
@@ -15,5 +13,6 @@ import java.lang.annotation.Target;
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Documented
+@Retention(RetentionPolicy.RUNTIME)
 public @interface ResponseResult {
 }

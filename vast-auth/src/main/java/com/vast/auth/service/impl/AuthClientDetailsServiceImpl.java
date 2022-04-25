@@ -1,7 +1,7 @@
 package com.vast.auth.service.impl;
 
 import com.vast.auth.dto.AuthClientDetailsDTO;
-import com.vast.auth.feign.ClientFeign;
+import com.vast.auth.feign.SystemFeign;
 import com.vast.auth.service.AuthClientDetailsService;
 import com.vast.common.dto.ClientInfoDTO;
 import com.vast.common.result.Result;
@@ -25,11 +25,11 @@ import org.springframework.stereotype.Service;
 public class AuthClientDetailsServiceImpl implements AuthClientDetailsService {
 
     @Autowired
-    private ClientFeign clientFeign;
+    private SystemFeign systemFeign;
 
     @Override
     public ClientDetails loadClientByClientId(String s) throws ClientRegistrationException {
-        Result<ClientInfoDTO> result = clientFeign.getClientByClientId(s);
+        Result<ClientInfoDTO> result = systemFeign.getClientByClientId(s);
         if (result==null||!result.isSuccess()){
             throw new ClientRegistrationException("客户端不存在");
         }

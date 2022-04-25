@@ -1,5 +1,6 @@
 package com.vast.system.controller;
 
+import com.vast.common.annotation.ResponseResult;
 import com.vast.common.dto.ClientInfoDTO;
 import com.vast.system.service.ClientService;
 import io.swagger.annotations.Api;
@@ -15,6 +16,7 @@ import javax.validation.constraints.NotBlank;
 @RequestMapping("client")
 @Api(tags = "API - OAuthClientController")
 @ApiOperation("用户信息")
+@ResponseResult
 public class OAuthClientController {
 
     @Autowired

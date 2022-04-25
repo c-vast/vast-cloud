@@ -1,5 +1,6 @@
 package com.vast.system.controller;
 
+import com.vast.common.annotation.ResponseResult;
 import com.vast.common.dto.UserInfoDTO;
 import com.vast.system.service.UserService;
 import io.swagger.annotations.Api;
@@ -15,6 +16,7 @@ import javax.validation.constraints.NotBlank;
 @RequestMapping("user")
 @Api(tags = "API - UserController")
 @ApiOperation("用户信息")
+@ResponseResult
 public class UserController {
 
     @Autowired
