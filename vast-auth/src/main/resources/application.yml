@@ -5,12 +5,3 @@ spring:
     name: vast-auth
   profiles:
     include: common
-
-
-eureka:
-  instance:
-    hostname: localhost
-    prefer-ip-address: true
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:7001/eureka/

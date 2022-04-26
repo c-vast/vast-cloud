@@ -1,6 +1,7 @@
 package com.vast.common.config;
 
 import com.google.common.base.Predicates;
+import com.vast.common.constant.Constants;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,10 +30,13 @@ public class SwaggerConfiguration {
 
     @Bean
     public Docket createRestApi() {
+        List<Parameter> parameters = new ArrayList<>();
         ParameterBuilder tokenPar = new ParameterBuilder();
-        List<Parameter> pars = new ArrayList<>();
-        tokenPar.name("Authorization").description("token令牌").modelRef(new ModelRef("string")).parameterType("header").required(false).build();
-        pars.add(tokenPar.build());
+        tokenPar.name(Constants.AUTHORIZATION)
+                .description("token令牌")
+                .modelRef(new ModelRef("string"))
+                .parameterType("header").required(false).build();
+        parameters.add(tokenPar.build());
 
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
@@ -41,7 +45,7 @@ public class SwaggerConfiguration {
                         , RequestHandlerSelectors.withClassAnnotation(ApiOperation.class)))
                 .paths(PathSelectors.any())
                 .build()
-                .globalOperationParameters(pars);
+                .globalOperationParameters(parameters);
     }
 
     protected ApiInfo apiInfo() {

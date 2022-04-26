@@ -3,6 +3,7 @@ package com.vast.common.config;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.vast.common.interceptor.LogInterceptor;
 import com.vast.common.interceptor.ResponseResultInterceptor;
 import com.vast.common.interceptor.UserAuthInterceptor;
 import com.vast.common.vo.UserVO;
@@ -30,10 +31,13 @@ public class WebConfiguration implements WebMvcConfigurer {
     private ResponseResultInterceptor responseResultInterceptor;
     @Autowired
     private UserAuthInterceptor userAuthInterceptor;
+    @Autowired
+    private LogInterceptor logInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(responseResultInterceptor);
+        registry.addInterceptor(logInterceptor);
         //registry.addInterceptor(userAuthInterceptor);
     }
 

@@ -11,10 +11,8 @@ package com.vast.common.constant;
  */
 public interface Constants {
     String RESPONSE_RESULT = "RESPONSE_RESULT";
-
     String AUTHORIZATION="Authorization";
-
     String UTF8="UTF-8";
     String APPLICATION_JSON_UTF8_VALUE="application/json;charset=UTF-8";
-    String JWT_TOKEN_PREFIX="bearer";
+    String JWT_TOKEN_PREFIX="Bearer ";
 }

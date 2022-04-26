@@ -23,6 +23,7 @@ public enum ResultCode {
     PARAM_ERROR(1006,"参数不正确"),
     USER_NOT_LOG_IN(2001, "用户未登录"),
     USER_LOGIN_ERROR(2002, "账号不存在或密码错误"),
+    USER_TOKEN_EXPIRED(2003,"用户令牌过期"),
     SYSTEM_ERROR(10000, "系统异常，请稍后重试");
 
     private Integer code;

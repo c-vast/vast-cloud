@@ -1,5 +1,6 @@
 package com.vast.system.service.impl;
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.vast.common.dto.ClientInfoDTO;
 import com.vast.common.exception.BusinessException;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@DS("master")
 public class ClientServiceImpl implements ClientService {
 
     @Autowired
