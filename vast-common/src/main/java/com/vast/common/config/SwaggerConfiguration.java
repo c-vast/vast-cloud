@@ -50,8 +50,8 @@ public class SwaggerConfiguration {
 
     protected ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("【vast-cloud】系统接口展示")
-                .version("2.0")
+                .title("【vast-cloud】微服务平台")
+                .version("v1.0.0")
                 .description("【vast-cloud】" + name + "-API文档")
                 .build();
     }

@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @TableName("t_sys_permission")
-public class SysPermissionDO extends BaseDO<Integer> {
+public class SysPermissionDO extends BaseDO<Integer,SysPermissionDO> {
     private Integer parentId;
     private String name;
     private String url;

@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @TableName("t_sys_role")
-public class SysRoleDO extends BaseDO<Integer> {
+public class SysRoleDO extends BaseDO<Integer,SysRoleDO> {
     private String name;
     private String sign;
     private Integer type;

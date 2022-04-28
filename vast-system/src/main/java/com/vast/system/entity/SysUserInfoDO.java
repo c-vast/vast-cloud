@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @TableName("t_sys_userinfo")
-public class SysUserInfoDO extends BaseDO<Long> {
+public class SysUserInfoDO extends BaseDO<Long,SysUserInfoDO> {
     private String username;
     private String password;
     private String nickname;

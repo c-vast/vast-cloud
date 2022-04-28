@@ -3,16 +3,20 @@ package com.vast.common.config;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.vast.common.constant.Constants;
 import com.vast.common.interceptor.LogInterceptor;
 import com.vast.common.interceptor.ResponseResultInterceptor;
 import com.vast.common.interceptor.UserAuthInterceptor;
-import com.vast.common.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,7 +29,7 @@ import java.util.List;
  * @description:
  */
 @Configuration
-public class WebConfiguration implements WebMvcConfigurer {
+public class WebMvcConfiguration implements WebMvcConfigurer {
 
     @Autowired
     private ResponseResultInterceptor responseResultInterceptor;
@@ -43,10 +47,19 @@ public class WebConfiguration implements WebMvcConfigurer {
 
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        FastJsonHttpMessageConverter converter=new FastJsonHttpMessageConverter();
+        FastJsonHttpMessageConverter fastConverter=new FastJsonHttpMessageConverter();
         FastJsonConfig fastJsonConfig = new FastJsonConfig();
         fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);
-        converter.setFastJsonConfig(fastJsonConfig);
-        converters.add(converter);
+
+        List<MediaType> fastMediaTypes = new ArrayList<>();
+        fastMediaTypes.add(MediaType.parseMediaType(Constants.APPLICATION_JSON_UTF8_VALUE));
+        fastConverter.setSupportedMediaTypes(fastMediaTypes);
+
+        fastConverter.setFastJsonConfig(fastJsonConfig);
+
+        StringHttpMessageConverter messageConverter = new StringHttpMessageConverter(StandardCharsets.UTF_8);
+        converters.add(messageConverter);
+
+        converters.add(fastConverter);
     }
 }
