@@ -42,12 +42,14 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(responseResultInterceptor);
         registry.addInterceptor(logInterceptor);
-        //registry.addInterceptor(userAuthInterceptor);
+        registry.addInterceptor(userAuthInterceptor)
+                .addPathPatterns("/**")
+                .excludePathPatterns(getExcludePathPatterns());
     }
 
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        FastJsonHttpMessageConverter fastConverter=new FastJsonHttpMessageConverter();
+        FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
         FastJsonConfig fastJsonConfig = new FastJsonConfig();
         fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);
 
@@ -61,5 +63,16 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         converters.add(messageConverter);
 
         converters.add(fastConverter);
+    }
+
+    private String[] getExcludePathPatterns() {
+        return new String[]{
+                "/**/auth/oauth/token",
+                "/**/*.html",
+                "/**/*.js",
+                "/**/*.css",
+                "/**/*.woff",
+                "/**/*.ttf"
+        };
     }
 }

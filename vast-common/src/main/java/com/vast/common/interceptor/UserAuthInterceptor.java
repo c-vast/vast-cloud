@@ -3,6 +3,7 @@ package com.vast.common.interceptor;
 import com.vast.common.annotation.IgnoreUserToken;
 import com.vast.common.component.JWTOperator;
 import com.vast.common.constant.Constants;
+import com.vast.common.context.BaseContextHandler;
 import com.vast.common.exception.GlobalException;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
@@ -20,8 +21,6 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class UserAuthInterceptor extends HandlerInterceptorAdapter {
 
-    @Autowired
-    private JWTOperator jwtOperator;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -34,13 +33,9 @@ public class UserAuthInterceptor extends HandlerInterceptorAdapter {
             if (annotation != null) {
                 return super.preHandle(request, response, handler);
             }
-            String token = request.getHeader(Constants.AUTHORIZATION);
-            if (StringUtils.isEmpty(token)) {
-                throw new GlobalException("令牌不存在");
-            }
-            Claims claims = jwtOperator.verifyJWT(token);
-            if (claims==null){
-                throw new GlobalException("令牌过期或令牌无效");
+            String token = request.getHeader(Constants.AUTH_USER_HEADER);
+            if (!StringUtils.isEmpty(token)) {
+                BaseContextHandler.set(Constants.CONTEXT_KEY_USER_ID,token);
             }
         }
         return super.preHandle(request, response, handler);
@@ -53,6 +48,7 @@ public class UserAuthInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        BaseContextHandler.remove();
         super.afterCompletion(request, response, handler, ex);
     }
 }
