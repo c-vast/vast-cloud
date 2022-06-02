@@ -14,8 +14,7 @@ public class Utils {
         return null;
     }
 
-    public static <T> T BeanConverter(T t,Object o){
+    public static <T> void BeanConverter(T t,Object o){
         BeanUtils.copyProperties(o,t);
-        return t;
     }
 }

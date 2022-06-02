@@ -3,6 +3,7 @@ package com.vast.common.handler;
 import com.vast.common.annotation.ResponseResult;
 import com.vast.common.constant.Constants;
 import com.vast.common.result.Result;
+import com.vast.common.util.RequestUtils;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -28,8 +29,7 @@ import javax.servlet.http.HttpServletRequest;
 public class ResponseResultHandler implements ResponseBodyAdvice<Object> {
     @Override
     public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> aClass) {
-        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        HttpServletRequest request = requestAttributes.getRequest();
+        HttpServletRequest request = RequestUtils.getRequest();
         ResponseResult responseResult = (ResponseResult) request.getAttribute(Constants.RESPONSE_RESULT);
         return responseResult != null;
     }

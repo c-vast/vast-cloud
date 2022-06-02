@@ -2,6 +2,7 @@ package com.vast.common.handler;
 
 import com.vast.common.enums.ResultCode;
 import com.vast.common.exception.BusinessException;
+import com.vast.common.exception.FieldRepeatException;
 import com.vast.common.exception.GlobalException;
 import com.vast.common.result.Result;
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +38,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BusinessException.class)
     public Result<Object> businessExceptionExceptionHandler(BusinessException e, HttpServletRequest request) {
         log.error("发生业务异常：{} -> {}", e.getCode(), e.getMessage(),e);
+        return Result.failure(e.getCode(), e.getMessage());
+    }
+
+    @ExceptionHandler(FieldRepeatException.class)
+    public Result<Object> fieldRepeatExceptionHandler(FieldRepeatException e, HttpServletRequest request) {
+        log.error("发生字段重复异常：{} -> {}", e.getCode(), e.getMessage(),e);
         return Result.failure(e.getCode(), e.getMessage());
     }
 

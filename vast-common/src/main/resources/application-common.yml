@@ -17,6 +17,8 @@ vast:
 swagger:
   enable: true
 spring:
+  banner:
+    location: classpath:banner.txt
   jackson:
     default-property-inclusion: non_null
     date-format: yyyy-MM-dd HH:mm:ss
@@ -65,4 +67,9 @@ eureka:
       defaultZone: http://localhost:7001/eureka/
 mybatis-plus:
   mapper-locations: classpath:mapper/**/*.xml
+http:
+  proxy:
+    enabled: false
+    host: 127.0.0.1
+    port: 80
 

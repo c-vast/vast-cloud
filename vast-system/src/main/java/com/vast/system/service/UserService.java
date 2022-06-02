@@ -5,5 +5,5 @@ import com.vast.system.entity.SysUserInfoDO;
 
 public interface UserService {
     UserInfoDTO getUserInfoByUsername(String username);
-    boolean saveUserInfo(SysUserInfoDO sysUserInfoDO);
+    boolean saveUserInfo(UserInfoDTO userInfoDTO);
 }

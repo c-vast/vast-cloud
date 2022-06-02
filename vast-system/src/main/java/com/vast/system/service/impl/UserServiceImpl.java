@@ -33,13 +33,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean saveUserInfo(SysUserInfoDO sysUserInfoDO) {
-        checkParam(sysUserInfoDO);
-        sysUserInfoDO.setId(IdUtils.getSnowflakeId());
+    public boolean saveUserInfo(UserInfoDTO userInfoDTO) {
+        SysUserInfoDO sysUserInfoDO = Utils.BeanConverter(SysUserInfoDO.class, userInfoDTO);
+        long snowflakeId = IdUtils.getSnowflakeId();
+        sysUserInfoDO.setId(snowflakeId);
         return sysUserInfoMapper.insert(sysUserInfoDO)>0;
-    }
-
-    private void checkParam(SysUserInfoDO sysUserInfoDO){
-
     }
 }
