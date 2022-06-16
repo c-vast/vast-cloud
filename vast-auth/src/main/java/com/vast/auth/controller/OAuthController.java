@@ -25,7 +25,7 @@ public class OAuthController {
     @Autowired
     private TokenEndpoint tokenEndpoint;
 
-    @ApiOperation("Oauth2获取token")
+    @ApiOperation("OAuth2获取token")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "grant_type", value = "授权模式", required = true),
             @ApiImplicitParam(name = "client_id", value = "Oauth2客户端ID", required = true),

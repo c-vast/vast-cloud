@@ -1,4 +1,4 @@
-package com.vast.eureka;
+package com.vast.register;
 
 import com.netflix.appinfo.InstanceInfo;
 import lombok.extern.slf4j.Slf4j;

@@ -8,7 +8,7 @@
     <artifactId>vast-cloud</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <modules>
-        <module>vast-eureka</module>
+        <module>vast-register</module>
         <module>vast-common</module>
         <module>vast-gateway</module>
         <module>vast-system</module>
