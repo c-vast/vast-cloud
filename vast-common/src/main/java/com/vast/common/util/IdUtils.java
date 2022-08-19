@@ -2,6 +2,10 @@ package com.vast.common.util;
 
 import cn.hutool.core.lang.Snowflake;
 import cn.hutool.core.util.IdUtil;
+import com.vast.common.constant.DatePatternConstants;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * ID生成工具
@@ -18,5 +22,11 @@ public class IdUtils {
 
     public static String getUUID() {
         return IdUtil.simpleUUID();
+    }
+
+    private static String getRandomId() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DatePatternConstants.DATE_TIME_FORMAT_YYYYMMDDHHMISS);
+        String randomId = dateFormat.format(new Date());
+        return RandomUtils.getRandomStr(3) + randomId + RandomUtils.getRandomStr(3);
     }
 }

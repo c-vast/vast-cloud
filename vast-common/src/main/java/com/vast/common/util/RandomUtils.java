@@ -1,5 +1,6 @@
 package com.vast.common.util;
 
+import java.text.DecimalFormat;
 import java.util.Random;
 
 /**
@@ -74,4 +75,19 @@ public class RandomUtils {
         return (char) num;
     }
 
+    public static String getRandomStr(int len) {
+        if (len<1||len>9){
+            throw new RuntimeException("长度不正确 1-9");
+        }
+        Random random = new Random();
+        String b=String.format("%0"+len+"d", 9).replace("0","9");
+        int rd = random.nextInt(Integer.parseInt(b)) + 1;
+        String rdStr = String.valueOf(rd);
+        if (rdStr.length() < len) {
+            String p=String.format("%0"+len+"d", 0);
+            DecimalFormat df = new DecimalFormat(p);
+            rdStr = df.format(rd);
+        }
+        return rdStr;
+    }
 }
