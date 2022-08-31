@@ -1,11 +1,11 @@
 package com.vast.gateway.component;
 
-import cn.hutool.http.HttpStatus;
 import com.vast.common.constant.Constants;
 import com.vast.common.enums.ResultCode;
 import com.vast.common.result.Result;
 import com.vast.common.util.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
@@ -23,7 +23,7 @@ public class ResourceAccessDeniedHandler implements AccessDeniedHandler {
     public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AccessDeniedException e) throws IOException, ServletException {
         httpServletResponse.setCharacterEncoding(Constants.UTF8);
         httpServletResponse.setContentType(Constants.APPLICATION_JSON_UTF8_VALUE);
-        httpServletResponse.setStatus(HttpStatus.HTTP_OK);
+        httpServletResponse.setStatus(HttpStatus.OK.value());
 
         Result<Object> result=Result.failure(ResultCode.FAILURE);
 
