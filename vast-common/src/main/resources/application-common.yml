@@ -17,6 +17,15 @@ vast:
 swagger:
   enable: true
 spring:
+  data:
+    cassandra:
+      keyspace-name: jinpeng #键空间名称
+      contact-points: 127.0.0.1 #服务器IP地址
+      port: 9042 #默认端口
+      session-name: Test Cluster #默认的集群名字
+      local-datacenter: datacenter1 #默认的数据中心
+  #      username: cassandra
+  #      password: cassandra
   banner:
     location: classpath:banner.txt
   jackson:
