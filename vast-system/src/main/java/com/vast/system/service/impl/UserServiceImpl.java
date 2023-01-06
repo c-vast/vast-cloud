@@ -11,6 +11,7 @@ import com.vast.system.mapper.SysUserInfoMapper;
 import com.vast.system.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @DS("master")
@@ -32,6 +33,7 @@ public class UserServiceImpl implements UserService {
         return userInfoDTO;
     }
 
+    @Transactional
     @Override
     public boolean saveUserInfo(UserInfoDTO userInfoDTO) {
         SysUserInfoDO sysUserInfoDO = Utils.BeanConverter(SysUserInfoDO.class, userInfoDTO);
