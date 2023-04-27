@@ -15,7 +15,7 @@ public class MessageController {
 
     @GetMapping("send/{userId}/{message}")
     @IgnoreUserToken
-    public Result send(@PathVariable("userId") String userId,@PathVariable("message") String message){
+    public Result<?> send(@PathVariable("userId") String userId,@PathVariable("message") String message){
         boolean b = WebSocketSessionManage.sendMessage(userId, message);
         if (b){
             return Result.success();

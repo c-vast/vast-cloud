@@ -33,6 +33,9 @@ spring:
   #      password: cassandra
   banner:
     location: classpath:banner.txt
+  activiti:
+    check-process-definitions: false
+    database-schema-update: true
   jackson:
     default-property-inclusion: non_null
     date-format: yyyy-MM-dd HH:mm:ss
@@ -63,15 +66,19 @@ spring:
       strict: false
       datasource:
         master:
-          url: jdbc:mysql://127.0.0.1:3306/vast_db?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+          url: jdbc:mysql://127.0.0.1:3306/vast_db?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
           driver-class-name: com.mysql.cj.jdbc.Driver
           username: root
           password: root
         slave_1:
-          url: jdbc:mysql://127.0.0.1:3306/gps?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+          url: jdbc:mysql://127.0.0.1:3306/gps?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
           driver-class-name: com.mysql.cj.jdbc.Driver
           username: root
           password: root
+  mongodb:
+    database: user
+    host: 127.0.0.1
+    port: 27017
 eureka:
   instance:
     hostname: localhost
