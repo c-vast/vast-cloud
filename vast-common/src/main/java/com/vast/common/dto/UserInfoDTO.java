@@ -2,11 +2,12 @@ package com.vast.common.dto;
 
 import com.vast.common.annotation.valid.*;
 import com.vast.common.base.dto.BaseDTO;
+import com.vast.common.datadesensitization.DataDesensitization;
+import com.vast.common.datadesensitization.DataDesensitizationStrategy;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
-import java.util.List;
 
 /**
  * Copyright (C), 2020-2021, c-vast
@@ -35,6 +36,7 @@ public class UserInfoDTO extends BaseDTO<Long> {
     @RepeatValidField(message = "邮箱已被注册")
     private String email;
     @RepeatValidField(message = "手机号已被注册")
+    @DataDesensitization(strategy = DataDesensitizationStrategy.PHONE)
     private String mobile;
     private Integer enable;
     private String roleSign;
