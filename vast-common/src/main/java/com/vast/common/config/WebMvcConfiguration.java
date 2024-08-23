@@ -7,11 +7,13 @@ import com.vast.common.constant.Constants;
 import com.vast.common.interceptor.LogInterceptor;
 import com.vast.common.interceptor.ResponseResultInterceptor;
 import com.vast.common.interceptor.UserAuthInterceptor;
+import com.vast.common.resolver.PageParamArgumentResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -45,6 +47,11 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         registry.addInterceptor(userAuthInterceptor)
                 .addPathPatterns("/**")
                 .excludePathPatterns(getExcludePathPatterns());
+    }
+
+    @Override
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
+        resolvers.add(new PageParamArgumentResolver());
     }
 
     @Override
