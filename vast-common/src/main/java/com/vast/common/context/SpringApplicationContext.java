@@ -1,6 +1,8 @@
 package com.vast.common.context;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -18,16 +20,13 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class SpringApplicationContext implements ApplicationContextAware {
+    @Getter
     private static ApplicationContext applicationContext;
 
     @Override
-    public void setApplicationContext(ApplicationContext context) throws BeansException {
+    public void setApplicationContext(@NotNull ApplicationContext context) throws BeansException {
         log.info("ApplicationContext registered-->{}", context);
         applicationContext=context;
-    }
-
-    public static ApplicationContext getApplicationContext() {
-        return applicationContext;
     }
 
     public static <T> T getBean(Class<T> type) {
