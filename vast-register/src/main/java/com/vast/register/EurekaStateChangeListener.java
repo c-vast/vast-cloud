@@ -20,18 +20,18 @@ import org.springframework.stereotype.Component;
 public class EurekaStateChangeListener {
     @EventListener
     public void listen(EurekaInstanceCanceledEvent event) {
-        log.info(event.getServerId() + "\t" + event.getAppName() + " 服务下线");
+        log.info("{}\t{} 服务下线", event.getServerId(), event.getAppName());
     }
 
     @EventListener
     public void listen(EurekaInstanceRegisteredEvent event) {
         InstanceInfo instanceInfo = event.getInstanceInfo();
-        log.info(instanceInfo.getAppName() + "进行注册");
+        log.info("{}进行注册", instanceInfo.getAppName());
     }
 
     @EventListener
     public void listen(EurekaInstanceRenewedEvent event) {
-        log.info(event.getServerId() + "\t" + event.getAppName() + " 服务进行续约");
+        log.info("{}\t{} 服务进行续约", event.getServerId(), event.getAppName());
     }
 
     @EventListener
